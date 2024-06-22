@@ -1,0 +1,30 @@
+.textCyan {
+    color:#66FCF1
+}
+
+.brandLogo {
+    text-align: start;
+}
+
+.bar {
+    height: 3px;
+    background-color: white;
+    width:32px;
+}
+
+.hamburger {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 5%;
+    position: sticky;
+    top: 0;
+}

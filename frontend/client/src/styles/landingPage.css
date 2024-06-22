@@ -1,0 +1,61 @@
+.greetingTitle {
+    /* border-bottom: 5px solid white; */
+    font-size: 20rem;
+    color: #66FCF1;
+    margin: 0;
+}
+
+.landingPage {
+    display: flex;
+    justify-content: center;
+}
+
+.landingPageContent {
+    text-align: center;
+
+}
+
+.jobTitle {
+    font-size: 2.5rem;
+    margin-bottom: 50px;
+}
+
+.socialHandles {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 50px;
+    margin-bottom: 100px;
+}
+
+.scrollDownButton {
+    border-radius: 300px;
+    background-color: white;
+    color: black;
+    animation: MoveUpDown 1.5s linear infinite;
+    position: relative;
+    cursor: pointer;
+}
+
+@keyframes MoveUpDown {
+    0%, 100% {
+      bottom: 0px;
+    }
+    50% {
+      bottom: 5px;
+    }
+  }
+
+@media (max-width: 900px) {
+    .greetingTitle {
+        font-size: 10rem;
+    }
+
+    .jobTitle {
+        font-size: 1.5rem;
+    }
+
+    .landingPageContent {
+        padding-top: 100px;
+    }
+}
