@@ -1,4 +1,100 @@
+.aboutPageContainer {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    padding: 0 5%;
+}
+
+.aboutPage {
+    width: 100vw;
+    padding: 5% 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.socialMediaThumbnail {
+    cursor: pointer;
+}
+
+.textSection {
+    word-wrap: break-word;
+}
+
 .sectionTitle {
-    text-align: start;
     color: #66FCF1;
+    text-align: start;
+}
+
+.gifSection {
+    display: flex;
+    justify-content: center;
+}
+
+.programmerGIF {
+    position: relative;
+    width: 100%;
+}
+
+.sectionDivider {
+    border: none;
+    height: 5px;
+    background-color: white;
+    width: 250px;
+    margin:0;
+}
+
+.socialHandles {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    gap: 50px;
+    padding: 25px 0;
+}
+
+.scrollContainer {
+    display: flex;
+    justify-content: center;;
+    text-align: center;
+}
+
+@media (max-width: 900px) {
+    .socialMediaThumbnail {
+        width: 38px;
+        height: 38px;
+    }
+
+    .socialHandles {
+        margin-bottom: 40px;
+    }
+
+    .aboutPageContainer {
+        padding: 5% 5%;
+    }
+}
+
+@media (max-width: 1280px) {
+    .aboutPage {
+        height: 100%;
+    }
+
+    .aboutPageContainer {
+        flex-direction: column;
+    }
+
+    .socialHandles {
+        justify-content: center;
+    }
+}
+
+@media (min-width: 1920px) {
+    .gifSection {
+        width: 50%;
+    }
+
+    .programmerGIF {
+        width: 60%;
+    }
 }

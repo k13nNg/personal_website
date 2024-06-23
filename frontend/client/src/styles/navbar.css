@@ -4,12 +4,13 @@
 
 .brandLogo {
     text-align: start;
+    font-size:3.2rem;
 }
 
 .bar {
     height: 3px;
-    background-color: white;
-    width:32px;
+    background-color: #66FCF1;
+    width: 32px;
 }
 
 .hamburger {
@@ -20,11 +21,17 @@
 }
 
 .navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 2;
+}
+
+.navBarContent {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 5px 5%;
-    position: sticky;
-    top: 0;
+    padding: 15px 5%;
+
 }
