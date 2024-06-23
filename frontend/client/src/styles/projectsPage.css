@@ -26,6 +26,7 @@
 .filterDesktop {
     display: flex;
     flex-direction: column;
+    padding-top: 15px;
 }
 
 .filterBox {
@@ -101,7 +102,9 @@
 
 .filterMobile {
     align-items: center;
-    padding: 5% 5%;
+    padding-top: 5%;
+    padding-left: 5%;
+    padding-right: 5%;
     display: none;
 }
 
