@@ -10,17 +10,29 @@ const ProjectsPage = (props) => {
             </div>
             <div className="projectsPageContainer">
                 <div className="filter">
-                    <div className="filterBox">
-                        Full Stack Development
+                    <div className="filterDesktop">
+                        <div className="filterBox filterBoxActive">
+                            Full Stack Development
+                        </div>
+                        <div className="filterBox">
+                            Data Analysis
+                        </div>
+                        <div className="filterBox">
+                            Embedded Development
+                        </div>
+                        <div className="filterBox">
+                            Game Development
+                        </div>
+                        
                     </div>
-                    <div className="filterBox">
-                        Data Analysis
-                    </div>
-                    <div className="filterBox">
-                        Embedded Development
-                    </div>
-                    <div className="filterBox">
-                        Game Development
+
+                    <div className="filterMobile">
+                        <select name="fields" className = "fieldsDropdown"id="">
+                            <option value="fullStack">Full Stack Development</option>
+                            <option value="data">Data Analysis</option>
+                            <option value="embedded">Embedded Development</option>
+                            <option value="game">Game Development</option>
+                        </select>
                     </div>
                 </div>
 

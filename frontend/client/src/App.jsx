@@ -4,6 +4,7 @@ import Navbar from './components/navbar';
 import LandingPage from './components/landingPage';
 import AboutPage from './components/aboutPage';
 import ProjectsPage from './components/projectsPage';
+import ExperiencePage from './components/experiencePage';
 
 function App() {
 
@@ -13,6 +14,7 @@ function App() {
       <LandingPage/>
       <AboutPage/>
       <ProjectsPage/>
+      <ExperiencePage/>
     </div>
   )
 }
