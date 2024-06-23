@@ -6,10 +6,87 @@
 
 .projectsPage {
     width: 100vw;
-    padding: 5% 5%;
+    padding: 5% 0;
 }
 
 .projectsPageContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     padding: 0 5%;
 }
 
+.projectsPageTitle {
+    padding: 0 5%;
+}
+
+
+.filter {
+    display: flex;
+    flex-direction: column;
+}
+
+.filterBox {
+    background-color: white;
+    color:black;
+    font-size: 1.5rem;
+    padding: 0px 30px;
+    border-radius: 500px;
+    margin-top: 20px;
+    width: 100%;
+    cursor: pointer;
+}
+
+.filterBox:hover {
+    background-color: #66FCF1;
+}
+
+.projectTitle {
+    text-align: center;
+    margin-bottom: 15px;
+    color: #66FCF1;
+}
+
+.projectTitleDivider {
+    border: none;
+    height: 5px;
+    background-color: white;
+    width: 100%;
+}
+
+.projects {
+    width: 65%;
+}
+
+.projectCard {
+    border: 3px solid white;
+    border-radius: 15px;
+    padding: 15px;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.thumbnail_and_details {
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+    margin-top: 15px;;
+}
+
+.skill {
+    background-color: white;
+    color: black;
+    border-radius: 500px;
+    padding: 0 15px;
+}
+
+.skillsContainer {
+    display: flex;
+    flex-direction: row;
+    margin-top: 50px;
+    gap: 15px;
+}
+
+.projectCard:hover {
+    box-shadow: 0 4px 6px #ffffff, 0 6px 6px #ffffff;
+}
