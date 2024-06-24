@@ -57,7 +57,7 @@ const ProjectsPage = (props) => {
                             <option value="game">Game Development</option>
                         </select>
                     </div>
-                    <p style={{textAlign: "center", paddingTop: "50px"}}><i>Click on the project card to see more details!</i></p>
+                    <p style={{textAlign: "center", paddingTop: "50px", color: "#66FCF1"}}><i>Click on the project card to see more details!</i></p>
                 </div>
 
                 <div className="projects">

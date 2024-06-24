@@ -25,6 +25,8 @@
     top: 0;
     width: 100%;
     z-index: 2;
+    background-color: #0B0C10;
+
 }
 
 .navBarContent {
