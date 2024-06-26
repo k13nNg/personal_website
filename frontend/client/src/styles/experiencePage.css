@@ -7,7 +7,7 @@
     height: 100vh;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    /* justify-content: space-between; */
 
     width: 100%;
     padding-top: 5%;
@@ -55,12 +55,11 @@
 }
 
 .experienceSection {
-    width: 70%;
+    width:80%;
+    height: 65%;
+    overflow-y: scroll;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 .experienceCard {
@@ -102,10 +101,13 @@
     }
 
     .experienceCard{
-        /* align-items: center; */
+        width: 70%;
+    }
+    
+    .experienceSection {
         width: 100%;
     }
-
+    
     .thumbnail {
         display: none;
     }
