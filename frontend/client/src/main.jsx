@@ -8,7 +8,8 @@ import {
   RouterProvider
 } from "react-router-dom"
 
-import Admin from "./components/admin.jsx"
+import Admin from "./components/admin.jsx";
+import AdminDashboard from "./components/adminDashboard.jsx";
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
   {
     path: "/admin",
     element: <Admin/>
+  },
+  {
+    path: "/adminDashboard",
+    element: <AdminDashboard/>
   }
 ])
 

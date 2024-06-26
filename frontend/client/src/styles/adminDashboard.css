@@ -1,0 +1,42 @@
+.adminDashboard {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    width: 100%;
+    padding-top: 5%;
+    align-items: center;
+}
+
+.adminDashboardHeader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.adminDashboardBody {
+    text-align: center;
+    padding-top: 15px;
+}
+
+.adminActions {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: 5%;
+    justify-content: center;
+    padding-top:50px;
+}
+
+.actionOption {
+    background-color: white;
+    color: black;
+    padding: 0 5%;
+    border-radius: 500px;
+    cursor: pointer;
+    font-size: 1.5rem;
+}
+
+.actionOption:hover {
+    background-color: #66FCF1;
+}
