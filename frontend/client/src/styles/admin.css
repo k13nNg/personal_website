@@ -1,7 +1,15 @@
+.adminLogIn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
 .logInForm {
     display: flex;
     flex-direction: column;
     place-items: center;
+    gap: 15px;
 }
 
 .formHeading {
