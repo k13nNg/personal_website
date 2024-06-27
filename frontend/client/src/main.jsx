@@ -10,6 +10,7 @@ import {
 
 import Admin from "./components/admin.jsx";
 import AdminDashboard from "./components/adminDashboard.jsx";
+import AddProject from './components/addProject.jsx';
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
   {
     path: "/adminDashboard",
     element: <AdminDashboard/>
+  },
+  {
+    path: "/adminDashboard/addProject",
+    element: <AddProject/>
   }
 ])
 

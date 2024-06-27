@@ -1,0 +1,86 @@
+.addProjectSection {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.addProjectForm {
+    width: 100%;
+}
+
+.form_desktop {
+    display: flex;
+    flex-shrink: row;
+    justify-content: center;
+    width: 100%;
+    gap: 5%;
+    height: 100%;
+}
+
+.form_mobile {
+    display: none;
+}
+
+.leftColumn {
+    display: flex;
+    flex-direction: column;
+}
+
+.rightColumn > * {
+    margin-bottom: 15px;
+}
+
+.textInput {
+    font-size: 1.2rem;
+    border-radius: 15px;
+    padding: 5%;
+    margin-bottom: 20px;
+    height: 100%;
+}
+
+.uploadFile {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    margin: auto;
+    gap: 15px;
+
+}
+
+.fileUploader {
+    font-size: 1.2rem;
+}
+
+
+.formSubmitButton {
+    cursor: pointer;
+}
+
+@media (max-width: 900px) {
+    .form_desktop {
+        display: none;
+    }
+
+    .form_mobile {
+        display: flex;
+        flex-direction: column;
+
+    }
+
+    .description {
+        width: 100%;
+    }
+
+    .fileUploader {
+        text-align: center;
+        margin: auto;
+    }
+
+    .uploadFile {
+        margin-bottom: 15px;
+    }
+}
