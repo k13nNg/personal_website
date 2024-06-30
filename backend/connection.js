@@ -24,6 +24,6 @@ try {
   console.error(err);
 }
 
-let db = client.db("projects");
+let db = client.db(process.env.DB_NAME);
 
 export default db;
