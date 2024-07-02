@@ -1,8 +1,10 @@
 import "../styles/projectsPage.css";
-
+import { useState, useEffect } from "react";
 
 
 const ProjectsPage = (props) => {
+
+    const[projectList,setProjectList] = useState([]);
 
     function filterField(e) {
         e.preventDefault();
@@ -23,6 +25,24 @@ const ProjectsPage = (props) => {
         }
 
     }
+
+    useEffect(() => {
+        async function retrieveProjectList() {
+            let response = await fetch("http://localhost:8080/admin/getProjects");
+    
+            if (!response.ok) {
+                const message = `An error occurred: ${response.statusText}`;
+                console.error(message);
+                return;
+            }
+            const projectList = await response.json();
+            setProjectList(projectList);
+        }
+        retrieveProjectList();
+        return;
+    }, [projectList.length]);
+
+    
 
     return (
         <section className="projectsPage" id="projectsPage">
@@ -61,81 +81,41 @@ const ProjectsPage = (props) => {
                 </div>
 
                 <div className="projects">
-                    <div className="projectCard" id="https://www.google.com" onClick={projectNav}>
-                        <h1 className="projectTitle">Test title</h1>
-                        <div className="projectTitleDivider"></div>
-                        <div className="thumbnail_and_details">
-                            <div className="thumbnailContainer">
-                                This is the thumbnail container
-                            </div>
-                            <div className="detailsContainer">
-                                <div>Start Date - End Date</div>
-                                <p className="projectDescription">Description</p>
-                                <div className="skillsContainer">
-                                    <div className="skill">Skill 1</div>
-                                    <div className="skill">Skill 2</div>
-                                    <div className="skill">Skill 3</div>
+                    {   
+                        ((projectList.length > 0) ? (projectList.map((project) => {
+                            let months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+                            let pStartDate = new Date(project.startDate);
+                            let formattedStartDate = `${months[pStartDate.getMonth()]}, ${pStartDate.getFullYear()}`;
+                            let pEndDate = new Date(project.endDate);
+                            let formattedEndDate = `${months[pEndDate.getMonth()]}, ${pEndDate.getFullYear()}`;
+                            return (
+                                <div className="projectCard" id="https://www.google.com" onClick={projectNav}>
+                                    <h1 className="projectTitle">{project.name}</h1>
+                                    <div className="projectTitleDivider"></div>
+                                    <div className="thumbnail_and_details">
+                                        <div className="thumbnailContainer">
+                                            This is the thumbnail container
+                                        </div>
+                                        <div className="detailsContainer">
+                                            <div>{formattedStartDate} - {formattedEndDate}</div>
+                                            <p className="projectDescription">{project.description}</p>
+                                            <div className="skillsContainer">
+                                               { project.skills.map((sk) => {
+                                                    return (
+                                                        <div className="skill">{sk}</div>
+                                                    )
+                                                })}
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
+                            )
+                        })): (
+                            <div>
+                                <h1>More projects coming soon!</h1>
                             </div>
-                        </div>
-                    </div>
-
-                    <div className="projectCard" id="https://www.google.com" onClick={projectNav}>
-                        <h1 className="projectTitle">Test title</h1>
-                        <div className="projectTitleDivider"></div>
-                        <div className="thumbnail_and_details">
-                            <div className="thumbnailContainer">
-                                This is the thumbnail container
-                            </div>
-                            <div className="detailsContainer">
-                                <div>Start Date - End Date</div>
-                                <p className="projectDescription">Description</p>
-                                <div className="skillsContainer">
-                                    <div className="skill">Skill 1</div>
-                                    <div className="skill">Skill 2</div>
-                                    <div className="skill">Skill 3</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="projectCard" id="https://www.google.com" onClick={projectNav}>
-                        <h1 className="projectTitle">Test title</h1>
-                        <div className="projectTitleDivider"></div>
-                        <div className="thumbnail_and_details">
-                            <div className="thumbnailContainer">
-                                This is the thumbnail container
-                            </div>
-                            <div className="detailsContainer">
-                                <div>Start Date - End Date</div>
-                                <p className="projectDescription">Description</p>
-                                <div className="skillsContainer">
-                                    <div className="skill">Skill 1</div>
-                                    <div className="skill">Skill 2</div>
-                                    <div className="skill">Skill 3</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="projectCard" id="https://www.google.com" onClick={projectNav}>
-                        <h1 className="projectTitle">Test title</h1>
-                        <div className="projectTitleDivider"></div>
-                        <div className="thumbnail_and_details">
-                            <div className="thumbnailContainer">
-                                This is the thumbnail container
-                            </div>
-                            <div className="detailsContainer">
-                                <div>Start Date - End Date</div>
-                                <p className="projectDescription">Description</p>
-                                <div className="skillsContainer">
-                                    <div className="skill">Skill 1</div>
-                                    <div className="skill">Skill 2</div>
-                                    <div className="skill">Skill 3</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                        ))
+                    }
                     
                 </div>
             </div>

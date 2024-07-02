@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+
 import "../styles/addProject.css";
 
 const AddProject = (props) => {
@@ -8,6 +9,8 @@ const AddProject = (props) => {
     const [startDate, setStartDate] = useState(0);
     const [endDate, setEndDate] = useState(0);
     const [skills, setSkills] = useState([]);
+    const [thumbnailBase64, setThumbnailBase64] = useState("");
+
     const [inputText, setInputText] = useState("");
 
     const navigate = useNavigate();
@@ -25,6 +28,23 @@ const AddProject = (props) => {
                 setInputText("");
             }
         }
+    }
+
+    function handleImageUpload() {
+        let base64String = "";
+        let file = document.querySelector(
+            'input[type=file]')['files'][0];
+
+        let reader = new FileReader();
+
+        reader.onload = function () {
+                base64String = reader.result.replace("data:", "")
+                .replace(/^.+,/, "")
+
+
+            setThumbnailBase64(base64String);
+        }
+        reader.readAsDataURL(file);
     }
 
     function removeSkill(index) {
@@ -76,6 +96,7 @@ const AddProject = (props) => {
                     "startDate": startDate,
                     "endDate": endDate,
                     "skills": skills,
+                    "thumbnailBase64": thumbnailBase64
                 }
                 
                 let response = await fetch("http://localhost:8080/admin/addProject", {
@@ -130,7 +151,7 @@ const AddProject = (props) => {
                         </div>
                         <div className="uploadFile">
                             <p>Thumbnail:</p>
-                            <input type="file" className="fileUploader" />
+                            <input type="file" className="fileUploader" onChange={handleImageUpload}/>
                         </div>
                     </div>
                 </div>

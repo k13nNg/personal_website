@@ -12,7 +12,7 @@ import { ObjectId } from "mongodb";
 const router = express.Router();
 
 // returns a list of all projects
-router.get("/",  async (req, res) => {
+router.get("/getProjects",  async (req, res) => {
   let collection = await db.collection(process.env.PROJECTS_COLLECTION);
   let results = await collection.find({}).toArray();
   res.send(results).status(200);
@@ -26,7 +26,8 @@ router.post("/addProject", async (req, res) => {
         description: req.body.description,
         startDate: req.body.startDate,
         endDate: req.body.endDate,
-        skills: req.body.skills
+        skills: req.body.skills,
+        thumbnail_base64: req.body.thumbnailBase64
       };
       let collection = await db.collection(process.env.PROJECTS_COLLECTION);
       let result = await collection.insertOne(newProject);
