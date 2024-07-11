@@ -3,13 +3,27 @@ import { useState, useEffect } from "react";
 
 
 const ProjectsPage = (props) => {
-
-    const[projectList,setProjectList] = useState([]);
+    
+    const[projectList, setProjectList] = useState([]); 
+    const[field, setField] = useState("Full-stack Development");
+    
+    useEffect(() => {
+        
+        getProjectsByField(field);
+        return;
+    }, [projectList.length]);
 
     function filterField(e) {
         e.preventDefault();
 
-        window.alert(e.target.id);
+        let filterBoxes = document.getElementsByClassName("filterBox");
+
+        for(let i = 0; i < filterBoxes.length; i++) {
+            filterBoxes[i].classList.remove("filterBoxActive");
+        }
+
+        e.target.classList.add("filterBoxActive");
+        getProjectsByField(e.target.id);
     }
 
     function projectNav(e) {
@@ -26,21 +40,24 @@ const ProjectsPage = (props) => {
 
     }
 
-    useEffect(() => {
-        async function retrieveProjectList() {
-            let response = await fetch("http://localhost:8080/admin/getProjects");
-    
-            if (!response.ok) {
-                const message = `An error occurred: ${response.statusText}`;
-                console.error(message);
-                return;
-            }
-            const projectList = await response.json();
-            setProjectList(projectList);
+    async function getProjectsByField(f) {
+        let response = await fetch(`http://localhost:8080/admin/getProjects/${f}`);
+
+        if (!response.ok) {
+            const message = `An error occurred: ${response.statusText}`;
+            console.error(message);
+            return;
         }
-        retrieveProjectList();
-        return;
-    }, [projectList.length]);
+
+        const projectList = await response.json();
+
+        console.log(projectList)
+
+        setField(f);
+        
+        setProjectList(projectList);
+    }
+
 
     
 
@@ -54,7 +71,7 @@ const ProjectsPage = (props) => {
             <div className="projectsPageContainer">
                 <div className="filter">
                     <div className="filterDesktop">
-                        <div className="filterBox filterBoxActive" id = "Full Stack Development" onClick={filterField}>
+                        <div className="filterBox filterBoxActive" id = "Full-stack Development" onClick={filterField}>
                             Full Stack Development
                         </div>
                         <div className="filterBox" id = "Data Analysis" onClick={filterField}>

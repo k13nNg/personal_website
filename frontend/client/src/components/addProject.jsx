@@ -10,8 +10,10 @@ const AddProject = (props) => {
     const [endDate, setEndDate] = useState(0);
     const [skills, setSkills] = useState([]);
     const [thumbnailBase64, setThumbnailBase64] = useState("");
+    const [field, setField] = useState("");
 
     const [inputText, setInputText] = useState("");
+
 
     const navigate = useNavigate();
 
@@ -74,13 +76,18 @@ const AddProject = (props) => {
         setEndDate(temp_date.getTime());
     }
 
-    const handleSkills = (e) => {
-        if (e.target.value==",") {
-            setTempSkill("");
-            setSkills(skills => [...skills, tempSkill]);
-        } else {
-            setTempSkill(e.target.value);
-        }
+    // const handleSkills = (e) => {
+    //     if (e.target.value==",") {
+    //         setTempSkill("");
+    //         setSkills(skills => [...skills, tempSkill]);
+    //     } else {
+    //         setTempSkill(e.target.value);
+    //     }
+    // }
+
+    const handleFieldChange = (e) => {
+        e.preventDefault();
+        setField(e.target.value);
     }
 
     async function handleFormSubmit(e) {
@@ -96,7 +103,8 @@ const AddProject = (props) => {
                     "startDate": startDate,
                     "endDate": endDate,
                     "skills": skills,
-                    "thumbnailBase64": thumbnailBase64
+                    "thumbnailBase64": thumbnailBase64,
+                    "field": field
                 }
                 
                 let response = await fetch("http://localhost:8080/admin/addProject", {
@@ -149,6 +157,14 @@ const AddProject = (props) => {
                                 <input onKeyDown={handleKeyDown} value={inputText} onChange={handleInputTextChange} type="text" className="skillsInput" placeholder="Type your skills, separated by 'Enter'" />
                             </div>
                         </div>
+                        <div>
+                            <select name="fields" className="fieldBox" onChange={handleFieldChange}>
+                                <option value="Full-stack Development">Full-stack Development</option>
+                                <option value="Data Analyst"> Data Analyst</option>
+                                <option value="Game Development">Game Development</option>
+                                <option value="Embedded Development">Embedded Development</option>
+                            </select>
+                        </div>
                         <div className="uploadFile">
                             <p>Thumbnail:</p>
                             <input type="file" className="fileUploader" onChange={handleImageUpload}/>
@@ -171,8 +187,21 @@ const AddProject = (props) => {
                             <input type="text" placeholder="End Date" className="inputBox" onFocus={(e) => (e.target.type="date")} onBlur={(e) => (e.target.type = "text")} />
                         </div>
                         <div className="skillBox">
-                            <input type="text" className="inputBox" placeholder="Skills"/>
+                            {/* <input type="text" className="inputBox" placeholder="Skills"/> */}
+                            <div className="skillTag">
+                                {
+                                    skills.map((skill,i) => (
+                                        <div className="tagItem" key={i}>
+                                            <span className="tagText">{skill}</span>
+                                            <span className="closeIcon" onClick={() => removeSkill(i)}>&times;</span>
+                                        </div>
+                                    ))
+                                }
+                                <input onKeyDown={handleKeyDown} value={inputText} onChange={handleInputTextChange} type="text" className="skillsInput" placeholder="Type your skills, separated by 'Enter'" />
+                            </div>
                         </div>
+
+
                         <div className="uploadFile">
                             <p>Thumbnail:</p>
                             <input type="file" className="fileUploader" />
@@ -181,7 +210,7 @@ const AddProject = (props) => {
                 </div>
                 <button className="formSubmitButton" onClick={handleFormSubmit}>Submit</button>
                 
-            </div>
+            </div>''
         </section>
     )
 }

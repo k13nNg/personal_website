@@ -18,6 +18,19 @@ router.get("/getProjects",  async (req, res) => {
   res.send(results).status(200);
 })
 
+// return a list of projects with specific field
+router.get("/getProjects/:field", async (req, res) => {
+  let collection = await db.collection(process.env.PROJECTS_COLLECTION);
+  let query = {field:  req.params.field};
+  let result = await collection.find(query).toArray();
+ 
+  if (!result) {
+    res.send("Not found").status(404);
+  } else {
+    res.send(result).status(200);
+  }
+})
+
 // add a project
 router.post("/addProject", async (req, res) => {
     try {
@@ -27,7 +40,8 @@ router.post("/addProject", async (req, res) => {
         startDate: req.body.startDate,
         endDate: req.body.endDate,
         skills: req.body.skills,
-        thumbnail_base64: req.body.thumbnailBase64
+        thumbnail_base64: req.body.thumbnailBase64,
+        field: req.body.field
       };
       let collection = await db.collection(process.env.PROJECTS_COLLECTION);
       let result = await collection.insertOne(newProject);

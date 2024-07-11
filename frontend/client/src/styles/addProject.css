@@ -59,17 +59,21 @@
 
 .fileUploader {
     font-size: 1.2rem;
+    margin: auto;
 }
 
 
 .formSubmitButton {
 
     cursor: pointer;
+    margin-top: 15px;
 }
 
 .skillBox {
-    width: min(80vw, 500px);
+    width: min(80vw, 300px);
+    margin: auto;
 }
+
 
 .skillTag {
     background-color: white;
@@ -113,6 +117,12 @@
     outline: none;
     background-color: white;
     color: black;
+}
+
+.fieldBox {
+    background-color: white;
+    padding: 0px 15px;   
+    margin-top: 15px;
 }
 
 @media (max-width: 900px) {
