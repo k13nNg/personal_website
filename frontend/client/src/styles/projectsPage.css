@@ -75,7 +75,7 @@
     border-radius: 15px;
     padding: 15px;
     width: 85%;
-    margin-bottom: 15px;
+    margin-bottom: 30px;
     cursor: pointer;
 }
 
@@ -84,6 +84,10 @@
     flex-direction: row;
     gap: 50px;
     margin-top: 15px;;
+}
+
+.thumbnailImage {
+    width: 200px;
 }
 
 .skill {

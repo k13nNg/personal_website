@@ -39,6 +39,11 @@ const AddProject = (props) => {
 
         let reader = new FileReader();
 
+        if (file.size > 16777216){
+            window.alert("Please upload a file with size at most 16MB");
+            document.querySelector('input[type=file]').reset()
+        }
+
         reader.onload = function () {
                 base64String = reader.result.replace("data:", "")
                 .replace(/^.+,/, "")
@@ -160,7 +165,7 @@ const AddProject = (props) => {
                         <div>
                             <select name="fields" className="fieldBox" onChange={handleFieldChange}>
                                 <option value="Full-stack Development">Full-stack Development</option>
-                                <option value="Data Analyst"> Data Analyst</option>
+                                <option value="Data Analysis"> Data Analysis</option>
                                 <option value="Game Development">Game Development</option>
                                 <option value="Embedded Development">Embedded Development</option>
                             </select>
@@ -173,21 +178,23 @@ const AddProject = (props) => {
                 </div>
 
                 <div className="form_mobile">
-                    
                         <div className="projectName">
                             <input type="text" className="inputBox" placeholder="Project Name"/>
                         </div>
+
                         <div className="description">
                             <textarea className="textInput" placeholder="Description"></textarea>
                         </div>
+
                         <div className="dateBox">
                             <input type="text" placeholder="Start Date" className="inputBox" onFocus={(e) => (e.target.type="date")} onBlur={(e) => (e.target.type = "text")} />
                         </div>
+
                         <div className="dateBox">
                             <input type="text" placeholder="End Date" className="inputBox" onFocus={(e) => (e.target.type="date")} onBlur={(e) => (e.target.type = "text")} />
                         </div>
+
                         <div className="skillBox">
-                            {/* <input type="text" className="inputBox" placeholder="Skills"/> */}
                             <div className="skillTag">
                                 {
                                     skills.map((skill,i) => (

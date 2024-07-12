@@ -1,14 +1,12 @@
 import "../styles/projectsPage.css";
 import { useState, useEffect } from "react";
 
-
 const ProjectsPage = (props) => {
     
     const[projectList, setProjectList] = useState([]); 
     const[field, setField] = useState("Full-stack Development");
     
     useEffect(() => {
-        
         getProjectsByField(field);
         return;
     }, [projectList.length]);
@@ -51,15 +49,16 @@ const ProjectsPage = (props) => {
 
         const projectList = await response.json();
 
-        console.log(projectList)
-
         setField(f);
         
         setProjectList(projectList);
     }
 
-
-    
+    function ThumbnailDisplay(props) {
+        return (
+            <img className="thumbnailImage" src={`data:image;base64,${props.base64Str}`}/>
+        );
+    }    
 
     return (
         <section className="projectsPage" id="projectsPage">
@@ -68,18 +67,22 @@ const ProjectsPage = (props) => {
                 <br />
                 <div className="sectionDivider"></div>
             </div>
+
             <div className="projectsPageContainer">
                 <div className="filter">
                     <div className="filterDesktop">
                         <div className="filterBox filterBoxActive" id = "Full-stack Development" onClick={filterField}>
                             Full Stack Development
                         </div>
+                                                
                         <div className="filterBox" id = "Data Analysis" onClick={filterField}>
                             Data Analysis
                         </div>
+
                         <div className="filterBox" id = "Embedded Development" onClick={filterField}>
                             Embedded Development
                         </div>
+
                         <div className="filterBox" id = "Game Development" onClick={filterField}>
                             Game Development
                         </div>
@@ -111,8 +114,9 @@ const ProjectsPage = (props) => {
                                     <div className="projectTitleDivider"></div>
                                     <div className="thumbnail_and_details">
                                         <div className="thumbnailContainer">
-                                            This is the thumbnail container
+                                            <ThumbnailDisplay base64Str = {project.thumbnail_base64}/>
                                         </div>
+
                                         <div className="detailsContainer">
                                             <div>{formattedStartDate} - {formattedEndDate}</div>
                                             <p className="projectDescription">{project.description}</p>

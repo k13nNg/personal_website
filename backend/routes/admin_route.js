@@ -1,4 +1,5 @@
 import express from "express";
+import multer from "multer";
 
 // This will help us connect to the database
 import db from "../connection.js";
@@ -10,6 +11,16 @@ import { ObjectId } from "mongodb";
 // We use it to define our routes.
 // The router will be added as a middleware and will take control of requests starting with path /record.
 const router = express.Router();
+
+const storage = multer.memoryStorage();
+const upload = multer(
+  {
+    storage: storage,
+    limits: {
+      fileSize: 16 * 1024 * 1024
+    }
+  }
+)
 
 // returns a list of all projects
 router.get("/getProjects",  async (req, res) => {
@@ -32,7 +43,9 @@ router.get("/getProjects/:field", async (req, res) => {
 })
 
 // add a project
-router.post("/addProject", async (req, res) => {
+router.post("/addProject", 
+  upload.single("image"), 
+  async (req, res) => {
     try {
       let newProject = {
         name: req.body.projectName,
@@ -45,6 +58,7 @@ router.post("/addProject", async (req, res) => {
       };
       let collection = await db.collection(process.env.PROJECTS_COLLECTION);
       let result = await collection.insertOne(newProject);
+      console.log("added successfully!");
       res.send(result).status(204);
     } catch (e) {
       console.error(e);
