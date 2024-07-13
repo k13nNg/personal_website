@@ -11,6 +11,7 @@ import {
 import Admin from "./components/admin.jsx";
 import AdminDashboard from "./components/adminDashboard.jsx";
 import AddProject from './components/addProject.jsx';
+import AddExperience from './components/addExperience.jsx';
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
   {
     path: "/adminDashboard/addProject",
     element: <AddProject/>
+  },
+  {
+    path: "/adminDashboard/addExperience",
+    element: <AddExperience/>
   }
 ])
 
