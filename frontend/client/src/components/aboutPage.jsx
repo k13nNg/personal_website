@@ -8,7 +8,7 @@ const AboutPage = (props) => {
         <section className="aboutPage" id="aboutPage">
             <div className="aboutPageContainer">
                 <div className="textSection">
-                    <h1 className = "sectionTitle">Hello, World!</h1>
+                    <h1 className = "aboutSectionTitle">Hello, World!</h1>
                     <br />
                     <hr className="sectionDivider"></hr>
                     <br />

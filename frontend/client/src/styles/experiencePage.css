@@ -1,18 +1,20 @@
 .experiencePage {
-    padding: 0 5%;
+    /* padding: 0 5%; */
+    width: 100vw;
+}
 
+.sectionTitle {
+    font-size: 10vh;
+    color: white;
 }
 
 .experiencePageContentContainer {
     height: 100vh;
     display: flex;
-    flex-direction: row;
-    /* justify-content: space-between; */
+    margin: auto;
 
-    width: 100%;
+    width: 100vw;
     padding-top: 5%;
-    /* padding-left: 5%; */
-    /* padding-right: 5%; */
 }
 
 .timeline {
@@ -20,26 +22,6 @@
     flex-direction: column;
     width: 10%;
     align-items: center;
-}
-
-.yearWidget {
-    color: black;
-    background-color: white;
-    padding: 5% 15%;
-    font-size: 1.2rem;
-    border-radius: 500px;
-    text-align: center;
-    cursor: pointer;
-}
-
-.yearWidget:hover {
-    background-color: #66FCF1;
-}
-
-.verticalLine {
-    width: 3px;
-    height: 15%;
-    background-color: white;
 }
 
 .jobTitle {
@@ -55,30 +37,37 @@
 }
 
 .experienceSection {
-    width:80%;
-    height: 65%;
     overflow-y: scroll;
-    display: flex;
-    flex-direction: column;
+    margin-right: auto;
+    margin-left: auto;
+    width: 100vw;
+}
+
+.experiencePageTitle {
+    padding: 0 5%;
 }
 
 .experienceCard {
     border: 2px solid white ;
     padding: 5%;
-    width: 60%;
+    width: 50%;
     margin-bottom: 5%;
+    margin-left: auto;
+    margin-right: auto;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     border-radius: 15px;
+    gap: 50px;
 }
 
-.experienceTextSection {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 2% 5%;
+ul {
+    padding-left: 30px;
+}
+
+.experienceCardTitle {
+    width: 100%;
 }
 
 .yearWidgetActive {
@@ -86,34 +75,5 @@
 }
 
 @media (max-width: 900px) {
-    .experiencePageContentContainer{
-        flex-direction: column;
-        justify-content: start;
-        /* align-items: center; */
-    }
-
-    .timeline {
-        padding-top: 0;
-        flex-direction: row;
-        gap: 15%;
-        margin-bottom: 15px;
-
-    }
-
-    .experienceCard{
-        width: 70%;
-    }
-    
-    .experienceSection {
-        width: 100%;
-    }
-    
-    .thumbnail {
-        display: none;
-    }
-
-    .verticalLine {
-        display: none;
-    }
 
 }

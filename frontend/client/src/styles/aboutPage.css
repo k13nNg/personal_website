@@ -25,9 +25,10 @@
     word-wrap: break-word;
 }
 
-.sectionTitle {
+.aboutSectionTitle {
     color: #66FCF1;
-    text-align: start;
+    font-size: 5rem;
+    
 }
 
 .gifSection {

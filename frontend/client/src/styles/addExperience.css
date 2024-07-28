@@ -19,5 +19,46 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    flex-wrap: wrap;
     gap: 15px;
+    flex-basis: 100%;
 }
+
+.formBody {
+    padding: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    gap: 35px;
+    max-width: 80%;
+}
+
+.editorContainer {
+    max-width: 100%;
+}
+
+.expLeftColumn {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.ql-editor {
+    background-color: white;
+    color:black;
+}
+
+.ql-toolbar {
+    background-color: white;
+}
+
+.rteContainer {
+    width: min(80vw, 500px);
+    height: 100%;
+}
+
+
+
+
+

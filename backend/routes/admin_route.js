@@ -29,6 +29,13 @@ router.get("/getProjects",  async (req, res) => {
   res.send(results).status(200);
 })
 
+// return a list of all experiences
+router.get("/getExp", async (req, res) => {
+  let collection = await db.collection(process.env.JOB_EXP);
+  let results = await collection.find({}).toArray();
+  res.send(results).status(200);
+})
+
 // return a list of projects with specific field
 router.get("/getProjects/:field", async (req, res) => {
   let collection = await db.collection(process.env.PROJECTS_COLLECTION);
@@ -54,16 +61,38 @@ router.post("/addProject",
         endDate: req.body.endDate,
         skills: req.body.skills,
         thumbnail_base64: req.body.thumbnailBase64,
+        githubURL: req.body.githubURL,
         field: req.body.field
       };
       let collection = await db.collection(process.env.PROJECTS_COLLECTION);
       let result = await collection.insertOne(newProject);
-      console.log("added successfully!");
+      // console.log("added successfully!");
       res.send(result).status(204);
     } catch (e) {
       console.error(e);
       res.status(500).send("Error adding project");
     }
 })
+
+// add an experience 
+router.post("/addExp",
+  async (req, res) => {
+    try {
+      let newExp = {
+        jobTitle: req.body.jobTitle,
+        jobDesc: req.body.jobDesc,
+        company: req.body.company,
+        startDate: req.body.startDate,
+        endDate: req.body.endDate,
+      }
+      let collection = await db.collection(process.env.JOB_EXP);
+      let result = await collection.insertOne(newExp);
+      res.send(result).status(204);
+    } catch (e) {
+      console.error(e);
+      res.status(500).send("Error adding project");
+    }
+  }
+)
 
 export default router;

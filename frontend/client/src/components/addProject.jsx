@@ -10,7 +10,8 @@ const AddProject = (props) => {
     const [endDate, setEndDate] = useState(0);
     const [skills, setSkills] = useState([]);
     const [thumbnailBase64, setThumbnailBase64] = useState("");
-    const [field, setField] = useState("");
+    const [field, setField] = useState("Full-stack Development");
+    const [githubURL, setGitHubURL] = useState("");
 
     const [inputText, setInputText] = useState("");
 
@@ -39,7 +40,7 @@ const AddProject = (props) => {
 
         let reader = new FileReader();
 
-        if (file.size > 16777216){
+        if (file.size > 16 * 1024 * 1024){
             window.alert("Please upload a file with size at most 16MB");
             document.querySelector('input[type=file]').reset()
         }
@@ -81,14 +82,10 @@ const AddProject = (props) => {
         setEndDate(temp_date.getTime());
     }
 
-    // const handleSkills = (e) => {
-    //     if (e.target.value==",") {
-    //         setTempSkill("");
-    //         setSkills(skills => [...skills, tempSkill]);
-    //     } else {
-    //         setTempSkill(e.target.value);
-    //     }
-    // }
+    const handleGitHubURLChange = (e) => {
+        e.preventDefault();
+        setGitHubURL(e.target.value);
+    }
 
     const handleFieldChange = (e) => {
         e.preventDefault();
@@ -109,6 +106,7 @@ const AddProject = (props) => {
                     "endDate": endDate,
                     "skills": skills,
                     "thumbnailBase64": thumbnailBase64,
+                    "githubURL": githubURL,
                     "field": field
                 }
                 
@@ -148,6 +146,9 @@ const AddProject = (props) => {
                         </div>
                         <div className="dateBox">
                             <input type="text" id="dateBox" placeholder="End Date" className="inputBox" onFocus={(e) => (e.target.type="date")} onBlur={(e) => (e.target.type = "text")} onChange={handleEndDateChange}/>
+                        </div>
+                        <div className="githubURLBox">
+                            <input type="text" id="githubURL" placeholder="Github URL" className="inputBox" onChange={handleGitHubURLChange}/>
                         </div>
                         <div className="skillBox">
                             <div className="skillTag">
@@ -192,6 +193,10 @@ const AddProject = (props) => {
 
                         <div className="dateBox">
                             <input type="text" placeholder="End Date" className="inputBox" onFocus={(e) => (e.target.type="date")} onBlur={(e) => (e.target.type = "text")} />
+                        </div>
+
+                        <div className="githubURLBox">
+                            <input type="text" id="githubURL" placeholder="Github URL" className="inputBox" onChange={handleGitHubURLChange}/>
                         </div>
 
                         <div className="skillBox">

@@ -63,7 +63,7 @@ const ProjectsPage = (props) => {
     return (
         <section className="projectsPage" id="projectsPage">
             <div className="projectsPageTitle">
-                <h1 className = "codingSectionTitle">print(<span className="textCyan">"Projects:"</span>)</h1>
+                <h1 className = "sectionTitle">print(<span className="textCyan">"Projects:"</span>)</h1>
                 <br />
                 <div className="sectionDivider"></div>
             </div>
@@ -109,7 +109,7 @@ const ProjectsPage = (props) => {
                             let pEndDate = new Date(project.endDate);
                             let formattedEndDate = `${months[pEndDate.getMonth()]}, ${pEndDate.getFullYear()}`;
                             return (
-                                <div className="projectCard" id="https://www.google.com" onClick={projectNav}>
+                                <div className="projectCard" id={project.githubURL} onClick={projectNav}>
                                     <h1 className="projectTitle">{project.name}</h1>
                                     <div className="projectTitleDivider"></div>
                                     <div className="thumbnail_and_details">
@@ -118,7 +118,8 @@ const ProjectsPage = (props) => {
                                         </div>
 
                                         <div className="detailsContainer">
-                                            <div>{formattedStartDate} - {formattedEndDate}</div>
+                                            <div className="projectStart_EndDate"><h3>{formattedStartDate} - {formattedEndDate}</h3></div>
+                                            <br/>
                                             <p className="projectDescription">{project.description}</p>
                                             <div className="skillsContainer">
                                                { project.skills.map((sk) => {

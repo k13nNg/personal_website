@@ -1,12 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
 
-.codingSectionTitle {
-    font-family: "Inter", sans-serif;
-}
-
 .projectsPage {
     width: 100vw;
     padding: 5% 0;
+}
+
+.sectionTitle {
+    font-size: 5rem;
+    color: white;
 }
 
 .projectsPageContainer {
@@ -100,6 +101,7 @@
 .skillsContainer {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     margin-top: 50px;
     gap: 15px;
 }
