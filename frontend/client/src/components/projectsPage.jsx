@@ -32,7 +32,7 @@ const ProjectsPage = (props) => {
     }
     
     async function getProjectsByField(f) {
-        let response = await fetch(`http://localhost:8080/admin/getProjectsByField/${f}`);
+        let response = await fetch(`http://${process.env.REACT_APP_API_URL}:${process.env.SERVER_PORT}/admin/getProjectsByField/${f}`);
         
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;

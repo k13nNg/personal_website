@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "cookies-next": "^4.2.1",
+    "dotenv": "^16.4.5",
+    "dotenv-webpack": "^8.1.0",
     "react": "^18.2.0",
     "react-cookie": "^7.2.0",
     "react-cookies": "^0.1.1",

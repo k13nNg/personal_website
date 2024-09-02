@@ -5,11 +5,12 @@ import 'react-toastify/dist/ReactToastify.css';
 import "../styles/admin.css";
 import bcrypt from "bcryptjs";
 
+
+
 const AdminLogin = (props) => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
-
 
     function handleUsernameChange(e) {
         setUsername(e.target.value);
@@ -38,7 +39,7 @@ const AdminLogin = (props) => {
         }
 
         try {
-            const response = await fetch(`http://localhost:8080/login`, {
+            const response = await fetch(`http://${process.env.REACT_APP_API_URL}:${process.env.SERVER_PORT}/login`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -48,8 +49,6 @@ const AdminLogin = (props) => {
             });
 
             let resJSON = await response.json();
-
-            console.log(resJSON);
 
             const {success, message} = resJSON;
 

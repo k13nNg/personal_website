@@ -60,7 +60,7 @@ const AddProject = (props) => {
     }
 
     async function checkExistence() {
-        let response = await fetch(`http://localhost:8080/admin/getProjectsByName/${projectName}`);
+        let response = await fetch(`http://${process.env.REACT_APP_API_URL}:${process.env.SERVER_PORT}/admin/getProjectsByName/${projectName}`);
 
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
@@ -154,7 +154,7 @@ const AddProject = (props) => {
 
                 if (projectAlreadyExists) {
 
-                    response = await fetch(`http://localhost:8080/admin/addProject/${projectName}`, {
+                    response = await fetch(`http://${process.env.REACT_APP_API_URL}:${process.env.SERVER_PORT}/admin/addProject/${projectName}`, {
                         method: "PATCH",
                         headers: {
                             "Content-Type": "application/json",
@@ -162,7 +162,7 @@ const AddProject = (props) => {
                         body: JSON.stringify(form),
                     })
                 } else {
-                    response = await fetch("http://localhost:8080/admin/addProject", {
+                    response = await fetch(`http://${process.env.REACT_APP_API_URL}:${process.env.SERVER_PORT}/admin/addProject`, {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json",
