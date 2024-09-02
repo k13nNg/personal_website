@@ -39,7 +39,7 @@ const AdminLogin = (props) => {
         }
 
         try {
-            const response = await fetch(`http://${process.env.REACT_APP_API_URL}:${process.env.SERVER_PORT}/login`, {
+            const response = await fetch(`http://${process.env.REACT_APP_API_URL}/login`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
