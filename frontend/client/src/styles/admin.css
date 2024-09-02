@@ -48,6 +48,7 @@
     border: none;
     border-radius: 500px;
     color: black;
+    cursor: pointer;
 }
 
 .forgotPass {

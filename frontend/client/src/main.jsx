@@ -8,10 +8,12 @@ import {
   RouterProvider
 } from "react-router-dom"
 
-import Admin from "./components/admin.jsx";
+import AdminLogin from './components/adminLogin.jsx';
 import AdminDashboard from "./components/adminDashboard.jsx";
 import AddProject from './components/addProject.jsx';
 import AddExperience from './components/addExperience.jsx';
+
+const user = null;
 
 const router = createBrowserRouter([
   {
@@ -20,24 +22,22 @@ const router = createBrowserRouter([
   },
   {
     path: "/admin",
-    element: <Admin/>
+    element: <AdminLogin/>
   },
   {
     path: "/adminDashboard",
     element: <AdminDashboard/>
   },
   {
-    path: "/adminDashboard/addProject",
+    path: "/adminDashboard/projects",
     element: <AddProject/>
   },
   {
-    path: "/adminDashboard/addExperience",
+    path: "/adminDashboard/experience",
     element: <AddExperience/>
   }
 ])
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <RouterProvider router={router}/>
-  </React.StrictMode>,
+  <RouterProvider router={router}/>
 )

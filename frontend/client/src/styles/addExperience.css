@@ -36,12 +36,17 @@
 
 .editorContainer {
     max-width: 100%;
+    margin: 0 auto;
 }
 
 .expLeftColumn {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
+}
+
+.submitButtonContainer {
+    text-align: right;
 }
 
 .ql-editor {
@@ -58,7 +63,29 @@
     height: 100%;
 }
 
+.titleContainer {
+    text-align: center;
+    padding-bottom: 15px;
+}
 
 
+@media (max-width: 768px) {
+    .formBody {
+        flex-direction: column;
+    }
 
+    .expLeftColumn {
+        align-items: center;
+    }
 
+    .expRightColumn {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+
+    .inputBox {
+        width: 450px;
+    }
+}

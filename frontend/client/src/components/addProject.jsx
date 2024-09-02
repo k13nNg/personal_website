@@ -1,5 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import {ToastContainer, toast} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 import "../styles/addProject.css";
 
@@ -41,7 +43,9 @@ const AddProject = (props) => {
         let reader = new FileReader();
 
         if (file.size > 16 * 1024 * 1024){
-            window.alert("Please upload a file with size at most 16MB");
+            toast.error("Please upload a file with size at most 16MB", {
+                position: "top-left"
+            });
             document.querySelector('input[type=file]').reset()
         }
 
@@ -55,15 +59,39 @@ const AddProject = (props) => {
         reader.readAsDataURL(file);
     }
 
+    async function checkExistence() {
+        let response = await fetch(`http://localhost:8080/admin/getProjectsByName/${projectName}`);
+
+        if (!response.ok) {
+            const message = `An error occurred: ${response.statusText}`;
+            toast.errpr(message, {
+                position: "top-left"
+            });
+            return;
+        } else {
+            let project = await response.json();
+            
+            if (Object.keys(project).length === 0 && project.constructor === Object) {
+                // if project is empty, then we return false (as the project does not exist in the database)
+                return false;
+            } else {
+                // else, the project does exist in the database => return true
+                return true;
+            }
+        }
+    }
+
     function removeSkill(index) {
         setSkills(skills.filter((el,i) => i != index))
     }
 
     function handleInputTextChange(e) {
+        e.preventDefault();
         setInputText(e.target.value);
     }
     
-    const handleProjectNameChange =(e) => {
+    const handleProjectNameChange = (e) => {
+        e.preventDefault();
         setProjectName(e.target.value);
     }
 
@@ -73,6 +101,7 @@ const AddProject = (props) => {
 
     const handleStartDateChange = (e) => {
         let temp_date = new Date(e.target.value);
+
         setStartDate(temp_date.getTime());
     }
 
@@ -84,6 +113,7 @@ const AddProject = (props) => {
 
     const handleGitHubURLChange = (e) => {
         e.preventDefault();
+
         setGitHubURL(e.target.value);
     }
 
@@ -96,9 +126,19 @@ const AddProject = (props) => {
         e.preventDefault();
         
         if (endDate < startDate) {
-            window.alert("End Date is set before Start Date!");
-        } else {
+            toast.error("End Date is set before Start Date!", {
+                position: "top-left"
+            });
+        } 
+        else if (skills.length == 0) {
+            toast.error("Skills section cannot be empty", {
+                position: "top-left"
+            });
+        }
+        else {
             try {
+                let projectAlreadyExists = await checkExistence();
+
                 let form = {
                     "projectName": projectName,
                     "description": description,
@@ -109,14 +149,28 @@ const AddProject = (props) => {
                     "githubURL": githubURL,
                     "field": field
                 }
+
+                let response;
+
+                if (projectAlreadyExists) {
+
+                    response = await fetch(`http://localhost:8080/admin/addProject/${projectName}`, {
+                        method: "PATCH",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify(form),
+                    })
+                } else {
+                    response = await fetch("http://localhost:8080/admin/addProject", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify(form),
+                    })
+                }
                 
-                let response = await fetch("http://localhost:8080/admin/addProject", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify(form),
-                })
     
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
@@ -124,21 +178,26 @@ const AddProject = (props) => {
             } catch (error) {
                 console.error("A problem occurred with your fetch operation: ", error);
             } finally {
-                window.alert("Project Added Successfully!");
-                navigate("/adminDashboard");
+                toast.success("Project Added Successfully!", {
+                    position: "top-right"
+                });
+                setTimeout(() => {
+                    navigate("/adminDashboard");
+                }, 2000);
             }
         } 
     }
 
     return (
         <section className="addProjectSection">
-            <h1 className="textCyan">Add your project here</h1>
+            <h1 className="textCyan">Enter your project details here</h1>
             <div className="sectionDivider"></div>
+            <br />
             <div className="addProjectForm">
                 <div className="form_desktop">
                     <div className="leftColumn">
-                        <input type="text" className="inputBox" placeholder="Project Name" value={projectName} onChange={handleProjectNameChange} />
-                        <textarea className="textInput" placeholder="Description" value={description} onChange={handleDescriptionChange}></textarea>
+                        <input type="text" className="inputBox" placeholder="Project Name" onChange={handleProjectNameChange} />
+                        <textarea className="textInput" placeholder="Description" onChange={handleDescriptionChange}></textarea>
                     </div>
                     <div className="rightColumn">
                         <div className="dateBox">
@@ -180,19 +239,19 @@ const AddProject = (props) => {
 
                 <div className="form_mobile">
                         <div className="projectName">
-                            <input type="text" className="inputBox" placeholder="Project Name"/>
+                            <input type="text" className="inputBox" placeholder="Project Name" onChange={handleProjectNameChange} />
                         </div>
 
                         <div className="description">
-                            <textarea className="textInput" placeholder="Description"></textarea>
+                            <textarea className="textInput" placeholder="Description" onChange={handleDescriptionChange}></textarea>
                         </div>
 
                         <div className="dateBox">
-                            <input type="text" placeholder="Start Date" className="inputBox" onFocus={(e) => (e.target.type="date")} onBlur={(e) => (e.target.type = "text")} />
+                            <input type="text" placeholder="Start Date" className="inputBox" onFocus={(e) => (e.target.type="date")} onBlur={(e) => (e.target.type = "text")} onChange={handleStartDateChange} />
                         </div>
 
                         <div className="dateBox">
-                            <input type="text" placeholder="End Date" className="inputBox" onFocus={(e) => (e.target.type="date")} onBlur={(e) => (e.target.type = "text")} />
+                            <input type="text" placeholder="End Date" className="inputBox" onFocus={(e) => (e.target.type="date")} onBlur={(e) => (e.target.type = "text")} onChange={handleEndDateChange} />
                         </div>
 
                         <div className="githubURLBox">
@@ -221,8 +280,8 @@ const AddProject = (props) => {
                     
                 </div>
                 <button className="formSubmitButton" onClick={handleFormSubmit}>Submit</button>
-                
-            </div>''
+                <ToastContainer/>
+            </div>
         </section>
     )
 }

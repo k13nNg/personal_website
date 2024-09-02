@@ -126,6 +126,11 @@
 }
 
 @media (max-width: 900px) {
+    .addProjectSection {
+        height: 100%;
+        padding: 50px 0;
+    }
+
     .form_desktop {
         display: none;
     }
