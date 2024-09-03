@@ -58,7 +58,7 @@ const AddExperience = (props) => {
         }
 
 
-        let response = await fetch(`http://${process.env.REACT_APP_API_URL}/admin/getExpByNameAndTime/${params.companyName}/${params.startDate_firstDateOfMonth}/${params.startDate_lastDateOfMonth}/${params.endDate_firstDateOfMonth}/${params.endDate_lastDateOfMonth}`);
+        let response = await fetch(`https://${process.env.REACT_APP_API_URL}/admin/getExpByNameAndTime/${params.companyName}/${params.startDate_firstDateOfMonth}/${params.startDate_lastDateOfMonth}/${params.endDate_firstDateOfMonth}/${params.endDate_lastDateOfMonth}`);
 
         let expList = await response.json();
 
@@ -102,7 +102,7 @@ const AddExperience = (props) => {
 
                 if (expExists) {
 
-                    response = await fetch(`http://${process.env.REACT_APP_API_URL}/admin/addExp/${company}/${startDate_firstDateOfMonth}/${startDate_lastDateOfMonth}/${endDate_firstDateOfMonth}/${endDate_lastDateOfMonth}`, {
+                    response = await fetch(`https://${process.env.REACT_APP_API_URL}/admin/addExp/${company}/${startDate_firstDateOfMonth}/${startDate_lastDateOfMonth}/${endDate_firstDateOfMonth}/${endDate_lastDateOfMonth}`, {
                         method: "PATCH",
                         headers: {
                             "Content-Type": "application/json",
@@ -110,7 +110,7 @@ const AddExperience = (props) => {
                         body: JSON.stringify(form),
                     })
                 } else {
-                    response = await fetch(`http://${process.env.REACT_APP_API_URL}/admin/addExp`, {
+                    response = await fetch(`https://${process.env.REACT_APP_API_URL}/admin/addExp`, {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json",

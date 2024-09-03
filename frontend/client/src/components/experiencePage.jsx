@@ -20,7 +20,7 @@ const ExperiencePage = (props) => {
     }
     
     async function getExperience() {
-        let response = await fetch(`http://${process.env.REACT_APP_API_URL}/admin/getExp`);
+        let response = await fetch(`https://${process.env.REACT_APP_API_URL}/admin/getExp`);
         
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
