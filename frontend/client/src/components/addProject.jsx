@@ -272,7 +272,15 @@ const AddProject = (props) => {
                             </div>
                         </div>
 
-
+                        <div>
+                            <select name="fields" className="fieldBox" onChange={handleFieldChange}>
+                                <option value="Full-stack Development">Full-stack Development</option>
+                                <option value="Data Analysis"> Data Analysis</option>
+                                <option value="Game Development">Game Development</option>
+                                <option value="Embedded Development">Embedded Development</option>
+                            </select>
+                        </div>
+                        
                         <div className="uploadFile">
                             <p>Thumbnail:</p>
                             <input type="file" className="fileUploader" />
