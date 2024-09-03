@@ -49,7 +49,7 @@ router.post("/", async (req, res) => {
             httpOnly: false,
             maxAge: 2 * 60 * 60 * 1000,
             sameSite: 'lax',
-            domain:"kienng.vercel.app",
+            domain:".kienng.vercel.app",
             secure: true
         });
     
