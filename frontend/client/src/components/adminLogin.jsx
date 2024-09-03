@@ -41,6 +41,7 @@ const AdminLogin = (props) => {
         try {
             const response = await fetch(`https://${process.env.REACT_APP_API_URL}/login`, {
                 method: "POST",
+                mode: "cors",
                 headers: {
                     "Content-Type": "application/json",
                 },
