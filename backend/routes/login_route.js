@@ -49,7 +49,8 @@ router.post("/", async (req, res) => {
             httpOnly: false,
             maxAge: 2 * 60 * 60 * 1000,
             sameSite: 'lax',
-            secure: false
+            domain:"kienng.vercel.app",
+            secure: true
         });
     
         res.status(201).json({message: "User logged in successfully", success: true});
