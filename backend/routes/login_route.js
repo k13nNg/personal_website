@@ -49,7 +49,7 @@ router.post("/", async (req, res) => {
             httpOnly: false,
             maxAge: 2 * 60 * 60 * 1000,
             sameSite: 'lax',
-            secure: true
+            secure: false
         });
     
         res.status(201).json({message: "User logged in successfully", success: true});
