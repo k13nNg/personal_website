@@ -48,7 +48,7 @@ router.post("/", async (req, res) => {
             withCredentials: true,
             httpOnly: false,
             maxAge: 2 * 60 * 60 * 1000,
-            sameSite: 'none',
+            sameSite: 'lax',
             secure: true
         });
     

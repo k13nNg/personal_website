@@ -14,7 +14,7 @@ const AdminDashboard = (props) => {
 
 
     useEffect(() => {
-
+        console.log(cookie);
         const verifyCookie = async () => {
             if (!hasCookie("token")) {
                 navigate("/admin");
