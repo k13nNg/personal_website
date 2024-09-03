@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 5050;
 const app = express();
 
 app.use(cors({
-  origin: ["http://localhost:5173", "http://127.0.0.1:5173", "http://192.168.0.188:5173"],
+  origin: ["http://localhost:5173", "http://127.0.0.1:5173", "https://personal-website-frontend.onrender.com"],
   methods: ["GET", "POST", "PATCH", "DELETE"],
   credentials: true
 }));
