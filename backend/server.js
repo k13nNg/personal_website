@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 5050;
 const app = express();
 
 app.use(cors({
-  origin: "*",
+  origin: "https://kienng.vercel.app/",
   methods: ["GET", "POST", "PATCH", "DELETE"],
   credentials: true
 }));
