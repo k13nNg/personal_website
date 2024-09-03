@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 5050;
 const app = express();
 
 app.use(cors({
-  origin: ["http://localhost:5173", "http://127.0.0.1:5173", "https://personal-website-ten-black.vercel.app/"],
+  origin: "*",
   methods: ["GET", "POST", "PATCH", "DELETE"],
   credentials: true
 }));
