@@ -44,16 +44,20 @@ router.post("/", async (req, res) => {
     
         const token = createSecretToken(user._id);
 
-        res.cookie("token", token, {
-            withCredentials: true,
-            httpOnly: false,
-            maxAge: 2 * 60 * 60 * 1000,
-            sameSite: 'lax',
-            domain:".kienng.vercel.app",
-            secure: true
-        });
+        // res.cookie("token", token, {
+        //     withCredentials: true,
+        //     httpOnly: false,
+        //     maxAge: 2 * 60 * 60 * 1000,
+        //     sameSite: 'lax',
+        //     domain:".kienng.vercel.app",
+        //     secure: true
+        // });
     
-        res.status(201).json({message: "User logged in successfully", success: true});
+        res.status(201).json({
+            message: "User logged in successfully", 
+            success: true,
+            token: token
+        });
 
     } catch (error) {
         console.error(error);

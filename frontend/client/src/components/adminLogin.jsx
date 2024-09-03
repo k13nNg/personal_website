@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import {ToastContainer, toast} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import "../styles/admin.css";
+import { setCookie } from "cookies-next";
 import bcrypt from "bcryptjs";
 
 
@@ -41,7 +42,6 @@ const AdminLogin = (props) => {
         try {
             const response = await fetch(`https://${process.env.REACT_APP_API_URL}/login`, {
                 method: "POST",
-                mode: "cors",
                 headers: {
                     "Content-Type": "application/json",
                 },
@@ -51,7 +51,9 @@ const AdminLogin = (props) => {
 
             let resJSON = await response.json();
 
-            const {success, message} = resJSON;
+            const {success, message, token} = resJSON;
+
+            setCookie("token", token);
 
             if (success ) {
                 // window.alert("SUCCESS!");
