@@ -30,7 +30,7 @@
 }
 
 .experienceCard {
-    width: 100%;
+    width: 70%;
     height: 100%;
     padding: 25px 50px;
     margin-left: auto;
@@ -47,4 +47,8 @@
 
 .jobTitle {
     margin-bottom: 15px;
+}
+
+ul {
+    margin-bottom: 3px;
 }

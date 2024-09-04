@@ -64,7 +64,7 @@ const AddProject = (props) => {
 
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`;
-            toast.errpr(message, {
+            toast.error(message, {
                 position: "top-left"
             });
             return;

@@ -3,7 +3,8 @@ import { useNavigate } from "react-router-dom";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import "../styles/addExperience.css";
-
+import {ToastContainer, toast} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const AddExperience = (props) => {
     const [jobTitle, setJobTitle] = useState("");
@@ -73,7 +74,10 @@ const AddExperience = (props) => {
                 // if expList is empty, then we return false (as the experience does not exist in the database)
                 return false;
             } else {
-                console.log("Experience exists!!1")
+                // console.log("Experience exists!!1")
+                toast.error("Experience exists!", {
+                    position: "top-left"
+                })
                 // else, the experience does exist in the database => return true
                 return true;
             }
@@ -85,7 +89,9 @@ const AddExperience = (props) => {
         e.preventDefault();
         
         if (endDate < startDate) {
-            window.alert("End Date is set before Start Date!");
+            toast.error("End Date is set before Start Date!", {
+                position: "top-left"
+            });
         } else {
             try {
                 let expExists = await checkExpExistence();
@@ -126,8 +132,14 @@ const AddExperience = (props) => {
             } catch (error) {
                 console.error("A problem occurred with your fetch operation: ", error);
             } finally {
-                window.alert("Experience Added Successfully!");
+                // window.alert("Experience Added Successfully!");
+                toast.success("Project Added Successfully!", {
+                    position: "top-right"
+                });
                 // navigate("/adminDashboard");
+                setTimeout(() => {
+                    navigate("/adminDashboard");
+                }, 2000);
             }
         } 
     }
